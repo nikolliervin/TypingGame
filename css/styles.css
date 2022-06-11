@@ -49,3 +49,19 @@ h1 {
 .bg {
 	background-color: #04AF71;
 }
+
+button {
+    border: none;
+   background-color: #444C56;
+   box-shadow: 0px 5px 0px 0px #50555c;
+   outline: none;
+   border-radius: 5px;
+   padding: 10px 15px;
+   font-size: 22px;
+   text-decoration: none;
+   margin: 20px;
+   color: #fff;
+   position: relative;
+   display: inline-block;
+   cursor: pointer;
+ }
