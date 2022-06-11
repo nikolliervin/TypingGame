@@ -37,3 +37,15 @@ h1 {
     color: #ecf0f1;
     margin: 2rem
 }
+.scoreWrap {float: left;}
+.timeWrap {float: right;}
+
+.outerWrap:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.bg {
+	background-color: #04AF71;
+}
