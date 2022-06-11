@@ -1,4 +1,4 @@
-var temp = document.querySelector('.time');
+var temp = document.getElementById('startBtn')
  	var button = document.querySelector("button");
  	var words = document.querySelector(".words");
  	var timerDiv = document.querySelector(".time");
@@ -27,20 +27,22 @@ var temp = document.querySelector('.time');
     		}
  		}, 1000);
   	}
-      function random() {
-        words.innerHTML = "";
-        var random = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
-        var wordArray = list[random].split("");
-        for (var i = 0; i < wordArray.length; i++) { 
-            var span = document.createElement("span");
-            span.classList.add("span");
-            span.innerHTML = wordArray[i];
-            words.appendChild(span);
-        }
-        spans = document.querySelectorAll(".span");
-    }
 
-    const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
+  	function random() {
+  		words.innerHTML = "";
+  		var random = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
+  		var wordArray = list[random].split("");
+  		for (var i = 0; i < wordArray.length; i++) { //building the words with spans around the letters
+  			var span = document.createElement("span");
+  			span.classList.add("span");
+  			span.innerHTML = wordArray[i];
+  			words.appendChild(span);
+  		}
+  		spans = document.querySelectorAll(".span");
+  	}
+
+
+  	const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
   'ACTUAL','ACTUALLY','ADD','ADDITION','ADDITIONAL','ADJECTIVE','ADULT','ADVENTURE',
   'ADVICE','AFFECT','AFRAID','AFTER','AFTERNOON','AGAIN','AGAINST','AGE',
   'AGO','AGREE','AHEAD','AID','AIR','AIRPLANE','ALIKE','ALIVE',
@@ -283,3 +285,46 @@ var temp = document.querySelector('.time');
   'WRAPPED','WRITE','WRITER','WRITING','WRITTEN','WRONG','WROTE','YARD',
   'YEAR','YELLOW','YES','YESTERDAY','YET','YOU','YOUNG','YOUNGER',
   'YOUR','YOURSELF','YOUTH','ZERO','ZOO'];
+
+  	button.addEventListener("click", function(e){
+  		countdown();
+  		random();
+  		button.disabled = true;	
+  	});
+
+
+  	function typing(e) {
+  			typed = String.fromCharCode(e.which);
+  			for (var i = 0; i < spans.length; i++) {
+  				if (spans[i].innerHTML === typed) { 
+  					if (spans[i].classList.contains("bg")) { 			continue;
+  					} else if (spans[i].classList.contains("bg") === false && spans[i-1] === undefined || spans[i-1].classList.contains("bg") !== false ) { // if it dont have class, if it is not first letter or if the letter before it dont have class (this is done to avoid marking the letters who are not in order for being checked, for example if you have two "A"s so to avoid marking both of them if the first one is at the index 0 and second at index 5 for example)
+  						spans[i].classList.add("bg");
+  						break;
+  					}
+  				}
+  			}
+  			var checker = 0;
+  			for (var j = 0; j < spans.length; j++) {				if (spans[j].className === "span bg") {
+  					checker++;
+  				}
+  				if (checker === spans.length) {
+                      spark.pause();
+					  spark.currentTime = 0;
+            spark.play();
+  					words.classList.add("animated");
+  					words.classList.add("fadeOut");
+  					points++; 
+  					scoreDiv.innerHTML = points; 
+  					document.removeEventListener("keydown", typing, false);
+  					setTimeout(function(){
+  						words.className = "words"; 
+  						random(); 
+  						document.addEventListener("keydown", typing, false);
+  					}, 400);
+  				}
+
+  			}
+  	}
+
+  	document.addEventListener("keydown", typing, false);
