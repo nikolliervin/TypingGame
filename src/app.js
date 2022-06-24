@@ -1,4 +1,4 @@
-var temp = document.getElementById('startBtn')
+  var temp = document.getElementById('startBtn')
  	var button = document.querySelector("button");
  	var words = document.querySelector(".words");
  	var timerDiv = document.querySelector(".time");
