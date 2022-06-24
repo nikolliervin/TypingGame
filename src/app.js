@@ -1,4 +1,5 @@
-  var temp = document.getElementById('startBtn')
+  var temp = document.getElementById('startBtn');
+  var secondHolder=document.getElementsByClassName('time');
  	var button = document.querySelector("button");
  	var words = document.querySelector(".words");
  	var timerDiv = document.querySelector(".time");
@@ -14,7 +15,7 @@
  		var timer = setInterval(function(){
  			button.disabled = true;
     		seconds--;
-    		temp.innerHTML = seconds;
+    	  timerDiv.innerHTML = seconds;
     		if (seconds === 0) {
     			alert("Game over! Your score is " + points);
     			scoreDiv.innerHTML = "0";
