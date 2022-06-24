@@ -47,7 +47,7 @@ h1 {
 }
 
 .bg {
-	background-color: #04AF71;
+	background-color: #05133667;
 }
 
 button {
@@ -85,4 +85,17 @@ button {
       font-size: 60px;
       letter-spacing: 1px;
       color: #ECF0F1;
+  }
+
+  .gameOverPopup{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1080px;
+    height: 90%;
+    position: fixed;
+    top: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 10px;
   }
