@@ -27,12 +27,13 @@
     			seconds = 60;
     			timerDiv.innerHTML = "60";
     			button.disabled = false;	
+          showGameOver();
     		}
  		}, 1000);
   	}
 
     playAgain.addEventListener('click',()=>{
-      location.reload();
+     
       gameOverPopup.style.display='none';
     })
 
