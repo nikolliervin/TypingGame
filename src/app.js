@@ -9,6 +9,8 @@
  	var typed;
  	var seconds = 60;
   var spark = new Audio("http://k003.kiwi6.com/hotlink/qdpr7bioht/spark.mp3");
+  var playAgain=document.getElementById('playAgainBtn');
+  var gameOverPopup=document.getElementsByClassName('gameOverPopup');
 
  	function countdown() {
  		points = 0;
@@ -29,6 +31,15 @@
  		}, 1000);
   	}
 
+    playAgain.addEventListener('click',()=>{
+      location.reload();
+      gameOverPopup.style.display='none';
+    })
+
+    function showGameOver(){
+      gameOverPopup.style.display='flex';
+    }
+
   	function random() {
   		words.innerHTML = "";
   		var random = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
@@ -41,7 +52,6 @@
   		}
   		spans = document.querySelectorAll(".span");
   	}
-
 
   	const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
   'ACTUAL','ACTUALLY','ADD','ADDITION','ADDITIONAL','ADJECTIVE','ADULT','ADVENTURE',
@@ -292,7 +302,6 @@
   		random();
   		button.disabled = true;	
   	});
-
 
   	function typing(e) {
   			typed = String.fromCharCode(e.which);
